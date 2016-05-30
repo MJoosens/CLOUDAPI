@@ -6,6 +6,7 @@
     <link href="Css/bootstrap.min.css" rel="stylesheet"> 
     <link src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
     <title>CloudAPI</title>
     <!-- Angular -->
     <script src="angular.min.js"></script>
@@ -25,7 +26,7 @@
 </script>
  
   </head>
-  <body>
+  <body ng-controller="HomeCtrl">
         <section class="container">
       <div class="container">
             <nav class="navbar navbar-default">
@@ -57,18 +58,28 @@
                 
                   
             </section> <!--main -->
-            <section class="item col-lg-6">
-                <h1>Make your Account here!</h1>
-                <label>Name: <input type='text' id="name"/></label><br>
-                <label>Email: <input type='text' id="email"/></label><br>
-                <label>Cellphone: <input type='text' id="phone"/></label><br>
-                <label>Address: <input type='text' id="address"/></label><br>
-                <label>City: <input type='text' id="city"/></label><br>
-                <label>Zip-code: <input type='text' id="zip"/></label><br>
-                <label>Country: <input type='text' id="country"/></label><br>
-                <button type='submit'>PUT SOME RESPEK ON MY NAME</button>
-            </section>
-           
+            <div class="container">
+      <div class="jumbotron" style="padding-bottom:50px;">
+      
+      <form class="form-signin" name="signinForm" role="form">
+        <div class="form-group" ng-class="{ 'has-error' : signinForm.email.$invalid }">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" ng-model="user.email">
+        <p class="help-block" ng-show="signinForm.email.$invalid">Enter a valid email.</p>
+    </div> 
+    <div class="form-group" ng-class="{ 'has-error' : signinForm.password.$invalid }">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="3">
+        <p class="help-block" ng-show="signinForm.password.$error.minlength">Min password length is 8 characters.</p>
+    </div>  
+        <label class="checkbox">
+          <a href="register.html"> Sign Up</a>
+        </label>
+        <button ng-disabled="!user.email || !user.password" type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
+      </form></div>
+
+    </div>
+               
         </div> 
 
 
